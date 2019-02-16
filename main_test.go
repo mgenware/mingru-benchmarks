@@ -43,7 +43,7 @@ func BenchmarkGormSelect100Rows(b *testing.B) {
 	gormConn := gormExample.GetConn()
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		gormExample.SelectRows(gormConn, SelectLimit)
+		gormExample.SelectUsers(gormConn, SelectLimit)
 	}
 }
 
@@ -52,6 +52,25 @@ func BenchmarkMingruSelect100Rows(b *testing.B) {
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
 		_, err := da.Users.SelectUsers(mrConn, SelectLimit, 0)
+		if err != nil {
+			panic(err)
+		}
+	}
+}
+
+func BenchmarkGormSelect100RowsWithRelationship(b *testing.B) {
+	gormConn := gormExample.GetConn()
+	b.ResetTimer()
+	for n := 0; n < b.N; n++ {
+		gormExample.SelectPosts(gormConn, SelectLimit)
+	}
+}
+
+func BenchmarkMingruSelect100RowsWithRelationship(b *testing.B) {
+	mrConn := mingruExample.GetConn()
+	b.ResetTimer()
+	for n := 0; n < b.N; n++ {
+		_, err := da.Posts.SelectPosts(mrConn, SelectLimit, 0)
 		if err != nil {
 			panic(err)
 		}

@@ -13,18 +13,33 @@ func main() {
 
 	fmt.Println("SelectRows - gorm")
 	gormConn := gormExample.GetConn()
-	rows1 := gormExample.SelectRows(gormConn, limit)
-	for _, r := range rows1 {
+	users1 := gormExample.SelectUsers(gormConn, limit)
+	for _, r := range users1 {
 		fmt.Println(r)
 	}
 
 	fmt.Println("SelectRows - mingru")
 	mrConn := mingruExample.GetConn()
-	rows2, err := da.Users.SelectUsers(mrConn, limit, 0)
+	users2, err := da.Users.SelectUsers(mrConn, limit, 0)
 	if err != nil {
 		panic(err)
 	}
-	for _, r := range rows2 {
+	for _, r := range users2 {
+		fmt.Println(r)
+	}
+
+	fmt.Println("SelectRowsWithRelationship - gorm")
+	posts1 := gormExample.SelectPosts(gormConn, limit)
+	for _, r := range posts1 {
+		fmt.Println(r)
+	}
+
+	fmt.Println("SelectRowsWithRelationship - mingru")
+	post2, err := da.Posts.SelectPosts(mrConn, limit, 0)
+	if err != nil {
+		panic(err)
+	}
+	for _, r := range post2 {
 		fmt.Println(r)
 	}
 }
