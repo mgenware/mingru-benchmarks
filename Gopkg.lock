@@ -10,12 +10,9 @@
   version = "v1.4.1"
 
 [[projects]]
-  digest = "1:420ec120a74b22e8a967f2a2928d89503e373848c0d4447d16ddbbbef9a9965c"
+  digest = "1:d4e6e8584d0a94ce567d237e19192dae44d57d2767ac7e1d7fbf5626d176381a"
   name = "github.com/jinzhu/gorm"
-  packages = [
-    ".",
-    "dialects/mysql",
-  ]
+  packages = ["."]
   pruneopts = "UT"
   revision = "472c70caa40267cb89fd8facb07fe6454b578626"
   version = "v1.9.2"
@@ -29,6 +26,14 @@
   revision = "04140366298a54a039076d798123ffa108fff46c"
 
 [[projects]]
+  digest = "1:ab177e4575cc9b66c61b859fc708206a889f488344292eb981a3bae2c0c27d44"
+  name = "github.com/mgenware/go-packagex"
+  packages = ["dbx"]
+  pruneopts = "UT"
+  revision = "f1bdbc477db7ec6fcf67654c2a96d6457296b9ea"
+  version = "v3.0.1"
+
+[[projects]]
   digest = "1:c25289f43ac4a68d88b02245742347c94f1e108c534dda442188015ff80669b3"
   name = "google.golang.org/appengine"
   packages = ["cloudsql"]
@@ -40,8 +45,9 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/go-sql-driver/mysql",
     "github.com/jinzhu/gorm",
-    "github.com/jinzhu/gorm/dialects/mysql",
+    "github.com/mgenware/go-packagex/dbx",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

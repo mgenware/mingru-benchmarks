@@ -14,8 +14,8 @@ func GetConn() *gorm.DB {
 	return db
 }
 
-func SelectRows(db *gorm.DB) []User {
+func SelectRows(db *gorm.DB, limit int) []User {
 	var users []User
-	db.Limit(100).Find(&users)
+	db.Limit(limit).Find(&users)
 	return users
 }

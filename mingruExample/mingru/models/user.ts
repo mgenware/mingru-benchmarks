@@ -6,4 +6,4 @@ class User extends dd.Table {
   age = dd.int();
 }
 
-export default dd.table(User);
+export default dd.table(User, 'users');
