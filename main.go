@@ -20,7 +20,7 @@ func main() {
 
 	fmt.Println("SelectRows - mingru")
 	mrConn := mingruExample.GetConn()
-	rows2, err := da.User.SelectUsers(mrConn, limit, 0)
+	rows2, err := da.Users.SelectUsers(mrConn, limit, 0)
 	if err != nil {
 		panic(err)
 	}
