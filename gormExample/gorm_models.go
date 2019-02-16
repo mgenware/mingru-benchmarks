@@ -1,4 +1,4 @@
-package main
+package gormExample
 
 type User struct {
 	ID   uint   `gorm:"primary_key"`
