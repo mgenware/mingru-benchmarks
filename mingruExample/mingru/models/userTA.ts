@@ -1,7 +1,8 @@
-import * as dd from 'dd-models';
-import user from './user';
+import * as dd from "dd-models";
+import user from "./user";
 
-const userTA = dd.actions(user);
-userTA.selectAll('Users', user.id, user.name, user.age).paginate();
+export class UserTA extends dd.TA {
+  selectUsers = dd.selectAll(user.id, user.name, user.age).paginate();
+}
 
-export default userTA;
+export default dd.ta(user, UserTA);
