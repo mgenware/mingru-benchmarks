@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-	"os"
 	"testing"
 
 	"github.com/mgenware/mingru-benchmarks/gormExample"
@@ -10,67 +8,40 @@ import (
 	"github.com/mgenware/mingru-benchmarks/mingruExample/da"
 )
 
-const SelectLimit = 100
+const SelectLimit = 10000
 
-func TestMain(m *testing.M) {
-	db := gormExample.GetConn()
-	defer db.Close()
-
-	for _, model := range []interface{}{
-		gormExample.User{}, gormExample.Post{},
-	} {
-		if err := db.AutoMigrate(model).Error; err != nil {
-			panic(err)
-		}
-	}
-
-	// Adding users
-	for i := 0; i < 100; i++ {
-		user := gormExample.User{Name: fmt.Sprintf(RandStringRunes(10)), Age: i}
-		db.Create(&user)
-
-		// Adding 2 posts per user
-		for j := 0; j < 2; j++ {
-			post := gormExample.Post{Title: RandStringRunes(20), Content: RandStringRunes(200), User: user}
-			db.Create(&post)
-		}
-	}
-
-	os.Exit(m.Run())
-}
-
-func BenchmarkGormSelect100Rows(b *testing.B) {
+func BenchmarkGormSelectRows(b *testing.B) {
 	gormConn := gormExample.GetConn()
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		gormExample.SelectUsers(gormConn, SelectLimit)
+		gormExample.SelectEmployees(gormConn, SelectLimit)
 	}
 }
 
-func BenchmarkMingruSelect100Rows(b *testing.B) {
+func BenchmarkMingruSelectRows(b *testing.B) {
 	mrConn := mingruExample.GetConn()
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		_, err := da.Users.SelectUsers(mrConn, SelectLimit, 0)
+		_, err := da.Employee.SelectAll(mrConn, SelectLimit, 0)
 		if err != nil {
 			panic(err)
 		}
 	}
 }
 
-func BenchmarkGormSelect100RowsWithRelationship(b *testing.B) {
+func BenchmarkGormSelectRowsWithRelationship(b *testing.B) {
 	gormConn := gormExample.GetConn()
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		gormExample.SelectPosts(gormConn, SelectLimit)
+		gormExample.SelectTitles(gormConn, SelectLimit)
 	}
 }
 
-func BenchmarkMingruSelect100RowsWithRelationship(b *testing.B) {
+func BenchmarkMingruSelectRowsWithRelationship(b *testing.B) {
 	mrConn := mingruExample.GetConn()
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		_, err := da.Posts.SelectPosts(mrConn, SelectLimit, 0)
+		_, err := da.Title.SelectAll(mrConn, SelectLimit, 0)
 		if err != nil {
 			panic(err)
 		}

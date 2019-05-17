@@ -9,37 +9,49 @@ import (
 )
 
 func main() {
-	limit := 100
+	limit := 10000
 
 	fmt.Println("SelectRows - gorm")
 	gormConn := gormExample.GetConn()
-	users1 := gormExample.SelectUsers(gormConn, limit)
+	users1 := gormExample.SelectEmployees(gormConn, limit)
+	if len(users1) != limit {
+		panic("Limit mismatch")
+	}
 	for _, r := range users1 {
 		fmt.Println(r)
 	}
 
 	fmt.Println("SelectRows - mingru")
 	mrConn := mingruExample.GetConn()
-	users2, err := da.Users.SelectUsers(mrConn, limit, 0)
+	users2, err := da.Employee.SelectAll(mrConn, limit, 0)
 	if err != nil {
 		panic(err)
+	}
+	if len(users2) != limit {
+		panic("Limit mismatch")
 	}
 	for _, r := range users2 {
 		fmt.Println(r)
 	}
 
 	fmt.Println("SelectRowsWithRelationship - gorm")
-	posts1 := gormExample.SelectPosts(gormConn, limit)
-	for _, r := range posts1 {
-		fmt.Println(r)
+	titles1 := gormExample.SelectTitles(gormConn, limit)
+	if len(titles1) != limit {
+		panic("Limit mismatch")
+	}
+	for _, r := range titles1 {
+		fmt.Println(r.Employee)
 	}
 
 	fmt.Println("SelectRowsWithRelationship - mingru")
-	post2, err := da.Posts.SelectPosts(mrConn, limit, 0)
+	titles2, err := da.Title.SelectAll(mrConn, limit, 0)
 	if err != nil {
 		panic(err)
 	}
-	for _, r := range post2 {
+	if len(titles2) != limit {
+		panic("Limit mismatch")
+	}
+	for _, r := range titles2 {
 		fmt.Println(r)
 	}
 }

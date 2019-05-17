@@ -14,14 +14,14 @@ func GetConn() *gorm.DB {
 	return db
 }
 
-func SelectUsers(db *gorm.DB, limit int) []User {
-	var users []User
+func SelectEmployees(db *gorm.DB, limit int) []Employee {
+	var users []Employee
 	db.Limit(limit).Find(&users)
 	return users
 }
 
-func SelectPosts(db *gorm.DB, limit int) []Post {
-	var posts []Post
-	db.Limit(limit).Preload("User").Find(&posts)
-	return posts
+func SelectTitles(db *gorm.DB, limit int) []Title {
+	var titles []Title
+	db.Limit(limit).Preload("Employee").Find(&titles)
+	return titles
 }
