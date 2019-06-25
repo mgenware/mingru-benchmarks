@@ -31,7 +31,7 @@ type EmployeeTableSelectAllResult struct {
 }
 
 // SelectAll ...
-func (da *TableTypeEmployee) SelectAll(queryable dbx.Queryable, limit, offset int) ([]*EmployeeTableSelectAllResult, error) {
+func (da *TableTypeEmployee) SelectAll(queryable dbx.Queryable, limit int, offset int) ([]*EmployeeTableSelectAllResult, error) {
 	rows, err := queryable.Query("SELECT `emp_no`, `first_name`, `last_name`, `gender`, `birth_date`, `hire_date` FROM `employees` LIMIT ? OFFSET ?", limit, offset)
 	if err != nil {
 		return nil, err

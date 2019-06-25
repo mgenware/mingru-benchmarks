@@ -3,9 +3,9 @@ import t from './title';
 import employee from './employee';
 
 export class TitleTA extends dd.TA {
-  // Select all titles
+  // Select all titles.
   selectAll = dd
-    .selectAll(
+    .selectRows(
       t.title,
       t.empNo,
       t.empNo.join(employee).firstName,

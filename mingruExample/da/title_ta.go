@@ -31,7 +31,7 @@ type TitleTableSelectAllResult struct {
 }
 
 // SelectAll ...
-func (da *TableTypeTitle) SelectAll(queryable dbx.Queryable, limit, offset int) ([]*TitleTableSelectAllResult, error) {
+func (da *TableTypeTitle) SelectAll(queryable dbx.Queryable, limit int, offset int) ([]*TitleTableSelectAllResult, error) {
 	rows, err := queryable.Query("SELECT `titles`.`title` AS `title`, `titles`.`emp_no` AS `empNo`, `join_1`.`first_name` AS `empNoFirstName`, `join_1`.`last_name` AS `empNoLastName`, `join_1`.`birth_date` AS `empNoBirthDate`, `join_1`.`hire_date` AS `empNoHireDate` FROM `titles` AS `titles` INNER JOIN `employees` AS `join_1` ON `join_1`.`emp_no` = `titles`.`emp_no` LIMIT ? OFFSET ?", limit, offset)
 	if err != nil {
 		return nil, err
