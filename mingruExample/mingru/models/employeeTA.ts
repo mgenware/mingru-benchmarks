@@ -5,7 +5,7 @@ export class EmployeeTA extends dd.TA {
   // Select an employee by ID.
   selectByID = dd.select().byID();
   // Select all employees.
-  selectAll = dd.selectRows().paginate();
+  selectAll = dd.selectRows().limit();
 }
 
 export default dd.ta(t, EmployeeTA);

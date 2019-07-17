@@ -23,7 +23,7 @@ func main() {
 
 	fmt.Println("SelectRows - mingru")
 	mrConn := mingruExample.GetConn()
-	users2, err := da.Employee.SelectAll(mrConn, limit, 0)
+	users2, _, err := da.Employee.SelectAll(mrConn, limit, 0)
 	if err != nil {
 		panic(err)
 	}

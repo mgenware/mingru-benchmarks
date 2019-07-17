@@ -13,7 +13,7 @@ export class TitleTA extends dd.TA {
       t.empNo.join(employee).birthDate,
       t.empNo.join(employee).hireDate,
     )
-    .paginate();
+    .limit();
 }
 
 export default dd.ta(t, TitleTA);

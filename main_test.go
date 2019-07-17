@@ -22,7 +22,7 @@ func BenchmarkMingruSelectRows(b *testing.B) {
 	mrConn := mingruExample.GetConn()
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		_, err := da.Employee.SelectAll(mrConn, SelectLimit, 0)
+		_, _, err := da.Employee.SelectAll(mrConn, SelectLimit, 0)
 		if err != nil {
 			panic(err)
 		}
@@ -41,7 +41,7 @@ func BenchmarkMingruSelectRowsWithRelationship(b *testing.B) {
 	mrConn := mingruExample.GetConn()
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		_, err := da.Title.SelectAll(mrConn, SelectLimit, 0)
+		_, _, err := da.Title.SelectAll(mrConn, SelectLimit, 0)
 		if err != nil {
 			panic(err)
 		}

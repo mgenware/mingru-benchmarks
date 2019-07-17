@@ -31,24 +31,28 @@ type TitleTableSelectAllResult struct {
 }
 
 // SelectAll ...
-func (da *TableTypeTitle) SelectAll(queryable dbx.Queryable, limit int, offset int) ([]*TitleTableSelectAllResult, error) {
+func (da *TableTypeTitle) SelectAll(queryable dbx.Queryable, limit int, offset int, max int) ([]*TitleTableSelectAllResult, int, error) {
 	rows, err := queryable.Query("SELECT `titles`.`title` AS `title`, `titles`.`emp_no` AS `empNo`, `join_1`.`first_name` AS `empNoFirstName`, `join_1`.`last_name` AS `empNoLastName`, `join_1`.`birth_date` AS `empNoBirthDate`, `join_1`.`hire_date` AS `empNoHireDate` FROM `titles` AS `titles` INNER JOIN `employees` AS `join_1` ON `join_1`.`emp_no` = `titles`.`emp_no` LIMIT ? OFFSET ?", limit, offset)
 	if err != nil {
-		return nil, err
+		return nil, 0, err
 	}
 	result := make([]*TitleTableSelectAllResult, 0, limit)
+	itemCounter := 0
 	defer rows.Close()
 	for rows.Next() {
-		item := &TitleTableSelectAllResult{}
-		err = rows.Scan(&item.Title, &item.EmpNo, &item.EmpNoFirstName, &item.EmpNoLastName, &item.EmpNoBirthDate, &item.EmpNoHireDate)
-		if err != nil {
-			return nil, err
+		itemCounter++
+		if itemCounter <= max {
+			item := &TitleTableSelectAllResult{}
+			err = rows.Scan(&item.Title, &item.EmpNo, &item.EmpNoFirstName, &item.EmpNoLastName, &item.EmpNoBirthDate, &item.EmpNoHireDate)
+			if err != nil {
+				return nil, 0, err
+			}
+			result = append(result, item)
 		}
-		result = append(result, item)
 	}
 	err = rows.Err()
 	if err != nil {
-		return nil, err
+		return nil, 0, err
 	}
-	return result, nil
+	return result, itemCounter, nil
 }
