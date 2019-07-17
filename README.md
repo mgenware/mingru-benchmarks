@@ -10,6 +10,7 @@ Benchmarks of mingru
 To run the benchmark:
 
 ```sh
+# Navigate to the root dir of this repo
 go test -bench=. -benchmem
 ```
 
