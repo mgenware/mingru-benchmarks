@@ -23,7 +23,7 @@ func main() {
 
 	fmt.Println("SelectRows - mingru")
 	mrConn := mingruExample.GetConn()
-	users2, _, err := da.Employee.SelectAll(mrConn, limit, 0)
+	users2, _, err := da.Employee.SelectAll(mrConn, limit, 0, limit)
 	if err != nil {
 		panic(err)
 	}
@@ -44,7 +44,7 @@ func main() {
 	}
 
 	fmt.Println("SelectRowsWithRelationship - mingru")
-	titles2, err := da.Title.SelectAll(mrConn, limit, 0)
+	titles2, _, err := da.Title.SelectAll(mrConn, limit, 0, limit)
 	if err != nil {
 		panic(err)
 	}
