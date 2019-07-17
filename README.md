@@ -23,8 +23,8 @@ Selecting 10,000 rows:
 goos: darwin
 goarch: amd64
 pkg: github.com/mgenware/mingru-benchmarks
-BenchmarkGormSelectRows-8                             20          75914389 ns/op        31297620 B/op     570107 allocs/op
-BenchmarkMingruSelectRows-8                          100          10937288 ns/op         3130817 B/op     100027 allocs/op
-BenchmarkGormSelectRowsWithRelationship-8             10         180885123 ns/op        65757827 B/op    1044081 allocs/op
-BenchmarkMingruSelectRowsWithRelationship-8          100          15630878 ns/op         3251641 B/op     110027 allocs/op
+BenchmarkGormSelectRows-4                             20          91268670 ns/op    31296982 B/op     570105 allocs/op
+BenchmarkMingruSelectRows-4                          100          13304216 ns/op     3130794 B/op     100027 allocs/op
+BenchmarkGormSelectRowsWithRelationship-4              5         206818964 ns/op    65786750 B/op    1044079 allocs/op
+BenchmarkMingruSelectRowsWithRelationship-4           50          25187953 ns/op     3251650 B/op     110027 allocs/op
 ```
