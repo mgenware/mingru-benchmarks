@@ -20,6 +20,24 @@ var Employee = &TableTypeEmployee{}
 
 // ------------ Actions ------------
 
+// DeleteByBirthDate ...
+func (da *TableTypeEmployee) DeleteByBirthDate(queryable dbx.Queryable, birthDate time.Time) (int, error) {
+	result, err := queryable.Exec("DELETE FROM `employees` WHERE `birth_date` = ?", birthDate)
+	return dbx.GetRowsAffectedIntWithError(result, err)
+}
+
+// DeleteByID ...
+func (da *TableTypeEmployee) DeleteByID(queryable dbx.Queryable, id int) error {
+	result, err := queryable.Exec("DELETE FROM `employees` WHERE `emp_no` = ?", id)
+	return dbx.CheckOneRowAffectedWithError(result, err)
+}
+
+// InsertUser ...
+func (da *TableTypeEmployee) InsertUser(queryable dbx.Queryable, id int, firstName string, lastName string, gender string, birthDate time.Time, hireDate time.Time) error {
+	_, err := queryable.Exec("INSERT INTO `employees` (`emp_no`, `first_name`, `last_name`, `gender`, `birth_date`, `hire_date`) VALUES (?, ?, ?, ?, ?, ?)", id, firstName, lastName, gender, birthDate, hireDate)
+	return err
+}
+
 // EmployeeTableSelectAllResult ...
 type EmployeeTableSelectAllResult struct {
 	ID        int
@@ -31,10 +49,13 @@ type EmployeeTableSelectAllResult struct {
 }
 
 // SelectAll ...
-func (da *TableTypeEmployee) SelectAll(queryable dbx.Queryable, limit int, offset int, max int) ([]*EmployeeTableSelectAllResult, int, error) {
-	rows, err := queryable.Query("SELECT `emp_no`, `first_name`, `last_name`, `gender`, `birth_date`, `hire_date` FROM `employees` LIMIT ? OFFSET ?", limit, offset)
+func (da *TableTypeEmployee) SelectAll(queryable dbx.Queryable, page int, pageSize int) ([]*EmployeeTableSelectAllResult, bool, error) {
+	limit := pageSize + 1
+	offset := (page - 1) * pageSize
+	max := pageSize
+	rows, err := queryable.Query("SELECT `emp_no`, `first_name`, `last_name`, `gender`, `birth_date`, `hire_date` FROM `employees` ORDER BY `hire_date` LIMIT ? OFFSET ?", limit, offset)
 	if err != nil {
-		return nil, 0, err
+		return nil, false, err
 	}
 	result := make([]*EmployeeTableSelectAllResult, 0, limit)
 	itemCounter := 0
@@ -45,16 +66,56 @@ func (da *TableTypeEmployee) SelectAll(queryable dbx.Queryable, limit int, offse
 			item := &EmployeeTableSelectAllResult{}
 			err = rows.Scan(&item.ID, &item.FirstName, &item.LastName, &item.Gender, &item.BirthDate, &item.HireDate)
 			if err != nil {
-				return nil, 0, err
+				return nil, false, err
 			}
 			result = append(result, item)
 		}
 	}
 	err = rows.Err()
 	if err != nil {
-		return nil, 0, err
+		return nil, false, err
 	}
-	return result, itemCounter, nil
+	return result, itemCounter > len(result), nil
+}
+
+// EmployeeTableSelectAllWithLimitResult ...
+type EmployeeTableSelectAllWithLimitResult struct {
+	ID        int
+	FirstName string
+	LastName  string
+	Gender    string
+	BirthDate time.Time
+	HireDate  time.Time
+}
+
+// SelectAllWithLimit ...
+func (da *TableTypeEmployee) SelectAllWithLimit(queryable dbx.Queryable, page int, pageSize int) ([]*EmployeeTableSelectAllWithLimitResult, bool, error) {
+	limit := pageSize + 1
+	offset := (page - 1) * pageSize
+	max := pageSize
+	rows, err := queryable.Query("SELECT `emp_no`, `first_name`, `last_name`, `gender`, `birth_date`, `hire_date` FROM `employees` ORDER BY `hire_date` LIMIT ? OFFSET ?", limit, offset)
+	if err != nil {
+		return nil, false, err
+	}
+	result := make([]*EmployeeTableSelectAllWithLimitResult, 0, limit)
+	itemCounter := 0
+	defer rows.Close()
+	for rows.Next() {
+		itemCounter++
+		if itemCounter <= max {
+			item := &EmployeeTableSelectAllWithLimitResult{}
+			err = rows.Scan(&item.ID, &item.FirstName, &item.LastName, &item.Gender, &item.BirthDate, &item.HireDate)
+			if err != nil {
+				return nil, false, err
+			}
+			result = append(result, item)
+		}
+	}
+	err = rows.Err()
+	if err != nil {
+		return nil, false, err
+	}
+	return result, itemCounter > len(result), nil
 }
 
 // EmployeeTableSelectByIDResult ...
@@ -75,4 +136,60 @@ func (da *TableTypeEmployee) SelectByID(queryable dbx.Queryable, id int) (*Emplo
 		return nil, err
 	}
 	return result, nil
+}
+
+// EmployeeTableSelectPagedResult ...
+type EmployeeTableSelectPagedResult struct {
+	ID        int
+	FirstName string
+	LastName  string
+	Gender    string
+	BirthDate time.Time
+	HireDate  time.Time
+}
+
+// SelectPaged ...
+func (da *TableTypeEmployee) SelectPaged(queryable dbx.Queryable, page int, pageSize int) ([]*EmployeeTableSelectPagedResult, bool, error) {
+	limit := pageSize + 1
+	offset := (page - 1) * pageSize
+	max := pageSize
+	rows, err := queryable.Query("SELECT `emp_no`, `first_name`, `last_name`, `gender`, `birth_date`, `hire_date` FROM `employees` ORDER BY `hire_date` LIMIT ? OFFSET ?", limit, offset)
+	if err != nil {
+		return nil, false, err
+	}
+	result := make([]*EmployeeTableSelectPagedResult, 0, limit)
+	itemCounter := 0
+	defer rows.Close()
+	for rows.Next() {
+		itemCounter++
+		if itemCounter <= max {
+			item := &EmployeeTableSelectPagedResult{}
+			err = rows.Scan(&item.ID, &item.FirstName, &item.LastName, &item.Gender, &item.BirthDate, &item.HireDate)
+			if err != nil {
+				return nil, false, err
+			}
+			result = append(result, item)
+		}
+	}
+	err = rows.Err()
+	if err != nil {
+		return nil, false, err
+	}
+	return result, itemCounter > len(result), nil
+}
+
+// SelectSig ...
+func (da *TableTypeEmployee) SelectSig(queryable dbx.Queryable, id int) (time.Time, error) {
+	var result time.Time
+	err := queryable.QueryRow("SELECT `birth_date` FROM `employees` WHERE `emp_no` = ?", id).Scan(&result)
+	if err != nil {
+		return result, err
+	}
+	return result, nil
+}
+
+// UpdateName ...
+func (da *TableTypeEmployee) UpdateName(queryable dbx.Queryable, id int, firstName string, lastName string) error {
+	result, err := queryable.Exec("UPDATE `employees` SET `first_name` = ?, `last_name` = ? WHERE `emp_no` = ?", firstName, lastName, id)
+	return dbx.CheckOneRowAffectedWithError(result, err)
 }
