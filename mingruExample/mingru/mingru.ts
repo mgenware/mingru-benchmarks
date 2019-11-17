@@ -8,8 +8,8 @@ import actions from './actions/actions';
     cleanBuild: true, // Cleans build directory on each build
   });
 
-  await builder.build(async () => {
-    builder.buildActions(actions);
-    builder.buildCreateTableSQLFiles(tables);
+  await builder.buildAsync(async () => {
+    await builder.buildActionsAsync(actions);
+    await builder.buildCreateTableSQLFilesAsync(tables);
   });
 })();
