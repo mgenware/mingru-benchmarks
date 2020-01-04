@@ -320,10 +320,10 @@ micromatch@^4.0.2:
     braces "^3.0.1"
     picomatch "^2.0.5"
 
-mingru-models@^0.28.0:
-  version "0.28.0"
-  resolved "https://registry.yarnpkg.com/mingru-models/-/mingru-models-0.28.0.tgz#b3ff2455d2f2c7e7154c7cada4fe062b5e769da2"
-  integrity sha512-7q9ujttBpKSkYzBEXhmOxS2MtZJFdNDBA3Igppf5fHHk2ACa/T/RNEjKeT4qhEA5CNkwXhdOFN5Yskk2PVqqVQ==
+mingru-models@^0.31.0:
+  version "0.31.0"
+  resolved "https://registry.yarnpkg.com/mingru-models/-/mingru-models-0.31.0.tgz#80572b087747b06ea947f0adcbde219381d63102"
+  integrity sha512-8TKuuJkA8W8P9abOY/vY3SA7MgnGlh5Xzjrx0wmjSOqWub9fDWp3BB8OSDPpgZeC0D58r7E6z5/e1oMwnmxYUQ==
   dependencies:
     lodash.camelcase "^4.3.0"
     lodash.snakecase "^4.1.1"
@@ -335,10 +335,10 @@ mingru-tsconfig@^2.0.0:
   resolved "https://registry.yarnpkg.com/mingru-tsconfig/-/mingru-tsconfig-2.0.0.tgz#9cf8ea84d2c0d5b91480b88700f31187b473c26a"
   integrity sha512-AnSwR7zgwlveL+6Cf+TJtjm3HVwSvuIO2Kw1IhkiDMJPJMK/24VLtN6GMrGOnfFFdnbLwztx97ZbIuCr/+2hMA==
 
-mingru@^0.19.0:
-  version "0.19.0"
-  resolved "https://registry.yarnpkg.com/mingru/-/mingru-0.19.0.tgz#30f4fa44c1ca2a1e9b3b3b6205839f1a57d66ebd"
-  integrity sha512-jAlbV9UxOX4vxMb9XWdCyDquQ4foc9zu3Lk2T7Z6BdiQ45XZbZML8fEDX+v+98hH6CmFGuzjD5rRWt3zHQfAvA==
+mingru@^0.22.0:
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/mingru/-/mingru-0.22.0.tgz#4201a85f0ebd55eb6d24aca5ec5e072da5cfdfe6"
+  integrity sha512-+uNAdC9ydJY8NzwMuLJq5H6vOWgMVCHWUKuRjlc2KPjNSs1iJrzpCFWRplNg7BsxteOW6lg2PcSviAMfpk+8tQ==
   dependencies:
     chalk "^3.0.0"
     del "^5.1.0"
@@ -457,10 +457,10 @@ to-type-string@^1.0.1:
   resolved "https://registry.yarnpkg.com/to-type-string/-/to-type-string-1.0.1.tgz#e1e58d28e6989f4c5c980cedc511218e81f494da"
   integrity sha512-mY7g+yjGN5PcF21lBO5bFUcX+kuSCu/C1ZBPHIgzS+x32BZUtxmQ30aZDdV6+n7ALMCuIRtLedQ1OqiTEmZttw==
 
-ts-node@^8.5.0:
-  version "8.5.0"
-  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-8.5.0.tgz#bc7d5a39133d222bf25b1693651e4d893785f884"
-  integrity sha512-fbG32iZEupNV2E2Fd2m2yt1TdAwR3GTCrJQBHDevIiEBNy1A8kqnyl1fv7jmRmmbtcapFab2glZXHJvfD1ed0Q==
+ts-node@^8.5.4:
+  version "8.5.4"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-8.5.4.tgz#a152add11fa19c221d0b48962c210cf467262ab2"
+  integrity sha512-izbVCRV68EasEPQ8MSIGBNK9dc/4sYJJKYA+IarMQct1RtEot6Xp0bXuClsbUSnKpg50ho+aOAx8en5c+y4OFw==
   dependencies:
     arg "^4.1.0"
     diff "^4.0.1"
@@ -468,10 +468,10 @@ ts-node@^8.5.0:
     source-map-support "^0.5.6"
     yn "^3.0.0"
 
-typescript@^3.7.2:
-  version "3.7.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.2.tgz#27e489b95fa5909445e9fef5ee48d81697ad18fb"
-  integrity sha512-ml7V7JfiN2Xwvcer+XAf2csGO1bPBdRbFCkYBczNZggrBZ9c7G3riSUeJmqEU5uOtXNPMhE3n+R4FA/3YOAWOQ==
+typescript@^3.7.4:
+  version "3.7.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.4.tgz#1743a5ec5fef6a1fa9f3e4708e33c81c73876c19"
+  integrity sha512-A25xv5XCtarLwXpcDNZzCGvW2D1S3/bACratYBx2sax8PefsFhlYmkQicKHvpYflFS8if4zne5zT5kpJ7pzuvw==
 
 wrappy@1:
   version "1.0.2"
