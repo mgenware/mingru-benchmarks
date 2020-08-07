@@ -14,16 +14,13 @@ export class EmployeeTA extends mm.TableActions {
   selectSig = mm.selectField(t.birthDate).byID();
 
   // Update an employee name by ID.
-  updateName = mm
-    .updateOne()
-    .setInputs(t.firstName, t.lastName)
-    .byID();
+  updateName = mm.updateOne().setInputs(t.firstName, t.lastName).byID();
 
   // Delete an employee by ID.
   deleteByID = mm.deleteOne().byID();
 
   // Delete all employees by some criteria.
-  deleteByBirthDate = mm.deleteSome().where(t.birthDate.isEqualToInput());
+  deleteByBirthDate = mm.deleteSome().whereSQL(t.birthDate.isEqualToInput());
 
   // Insert a new employee.
   insertUser = mm.insertOne().setInputs();
