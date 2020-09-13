@@ -8,7 +8,7 @@ package da
 import (
 	"time"
 
-	"github.com/mgenware/go-packagex/v5/dbx"
+	"github.com/mgenware/mingru-go-lib"
 )
 
 // TableTypeEmployee ...
@@ -21,19 +21,19 @@ var Employee = &TableTypeEmployee{}
 // ------------ Actions ------------
 
 // DeleteByBirthDate ...
-func (da *TableTypeEmployee) DeleteByBirthDate(queryable dbx.Queryable, birthDate time.Time) (int, error) {
+func (da *TableTypeEmployee) DeleteByBirthDate(queryable mingru.Queryable, birthDate time.Time) (int, error) {
 	result, err := queryable.Exec("DELETE FROM `employees` WHERE `birth_date` = ?", birthDate)
-	return dbx.GetRowsAffectedIntWithError(result, err)
+	return mingru.GetRowsAffectedIntWithError(result, err)
 }
 
 // DeleteByID ...
-func (da *TableTypeEmployee) DeleteByID(queryable dbx.Queryable, id int) error {
+func (da *TableTypeEmployee) DeleteByID(queryable mingru.Queryable, id int) error {
 	result, err := queryable.Exec("DELETE FROM `employees` WHERE `emp_no` = ?", id)
-	return dbx.CheckOneRowAffectedWithError(result, err)
+	return mingru.CheckOneRowAffectedWithError(result, err)
 }
 
 // InsertUser ...
-func (da *TableTypeEmployee) InsertUser(queryable dbx.Queryable, id int, firstName string, lastName string, gender string, birthDate time.Time, hireDate time.Time) error {
+func (da *TableTypeEmployee) InsertUser(queryable mingru.Queryable, id int, firstName string, lastName string, gender string, birthDate time.Time, hireDate time.Time) error {
 	_, err := queryable.Exec("INSERT INTO `employees` (`emp_no`, `first_name`, `last_name`, `gender`, `birth_date`, `hire_date`) VALUES (?, ?, ?, ?, ?, ?)", id, firstName, lastName, gender, birthDate, hireDate)
 	return err
 }
@@ -49,7 +49,7 @@ type EmployeeTableSelectAllResult struct {
 }
 
 // SelectAll ...
-func (da *TableTypeEmployee) SelectAll(queryable dbx.Queryable, page int, pageSize int) ([]*EmployeeTableSelectAllResult, bool, error) {
+func (da *TableTypeEmployee) SelectAll(queryable mingru.Queryable, page int, pageSize int) ([]*EmployeeTableSelectAllResult, bool, error) {
 	limit := pageSize + 1
 	offset := (page - 1) * pageSize
 	max := pageSize
@@ -89,7 +89,7 @@ type EmployeeTableSelectAllWithLimitResult struct {
 }
 
 // SelectAllWithLimit ...
-func (da *TableTypeEmployee) SelectAllWithLimit(queryable dbx.Queryable, page int, pageSize int) ([]*EmployeeTableSelectAllWithLimitResult, bool, error) {
+func (da *TableTypeEmployee) SelectAllWithLimit(queryable mingru.Queryable, page int, pageSize int) ([]*EmployeeTableSelectAllWithLimitResult, bool, error) {
 	limit := pageSize + 1
 	offset := (page - 1) * pageSize
 	max := pageSize
@@ -129,7 +129,7 @@ type EmployeeTableSelectByIDResult struct {
 }
 
 // SelectByID ...
-func (da *TableTypeEmployee) SelectByID(queryable dbx.Queryable, id int) (*EmployeeTableSelectByIDResult, error) {
+func (da *TableTypeEmployee) SelectByID(queryable mingru.Queryable, id int) (*EmployeeTableSelectByIDResult, error) {
 	result := &EmployeeTableSelectByIDResult{}
 	err := queryable.QueryRow("SELECT `emp_no`, `first_name`, `last_name`, `gender`, `birth_date`, `hire_date` FROM `employees` WHERE `emp_no` = ?", id).Scan(&result.ID, &result.FirstName, &result.LastName, &result.Gender, &result.BirthDate, &result.HireDate)
 	if err != nil {
@@ -149,7 +149,7 @@ type EmployeeTableSelectPagedResult struct {
 }
 
 // SelectPaged ...
-func (da *TableTypeEmployee) SelectPaged(queryable dbx.Queryable, page int, pageSize int) ([]*EmployeeTableSelectPagedResult, bool, error) {
+func (da *TableTypeEmployee) SelectPaged(queryable mingru.Queryable, page int, pageSize int) ([]*EmployeeTableSelectPagedResult, bool, error) {
 	limit := pageSize + 1
 	offset := (page - 1) * pageSize
 	max := pageSize
@@ -179,7 +179,7 @@ func (da *TableTypeEmployee) SelectPaged(queryable dbx.Queryable, page int, page
 }
 
 // SelectSig ...
-func (da *TableTypeEmployee) SelectSig(queryable dbx.Queryable, id int) (time.Time, error) {
+func (da *TableTypeEmployee) SelectSig(queryable mingru.Queryable, id int) (time.Time, error) {
 	var result time.Time
 	err := queryable.QueryRow("SELECT `birth_date` FROM `employees` WHERE `emp_no` = ?", id).Scan(&result)
 	if err != nil {
@@ -189,7 +189,7 @@ func (da *TableTypeEmployee) SelectSig(queryable dbx.Queryable, id int) (time.Ti
 }
 
 // UpdateName ...
-func (da *TableTypeEmployee) UpdateName(queryable dbx.Queryable, id int, firstName string, lastName string) error {
+func (da *TableTypeEmployee) UpdateName(queryable mingru.Queryable, id int, firstName string, lastName string) error {
 	result, err := queryable.Exec("UPDATE `employees` SET `first_name` = ?, `last_name` = ? WHERE `emp_no` = ?", firstName, lastName, id)
-	return dbx.CheckOneRowAffectedWithError(result, err)
+	return mingru.CheckOneRowAffectedWithError(result, err)
 }

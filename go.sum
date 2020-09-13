@@ -1,6 +1,4 @@
 github.com/go-sql-driver/mysql v1.5.0 h1:ozyZYNQW3x3HtqT1jira07DN2PArx2v7/mN66gGcHOs=
 github.com/go-sql-driver/mysql v1.5.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LBy8hT2VhHyBg=
-github.com/google/go-cmp v0.4.0/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
-github.com/mgenware/go-packagex/v5 v5.2.0 h1:gVOSsvUiiAkBQc4zVeIrIYtxHUkm6VPiNmRiT5DYRW8=
-github.com/mgenware/go-packagex/v5 v5.2.0/go.mod h1:1P+BP5jSJwz4QZ7ybN0yR0QSyOvnM1vg3QVYHD69M9w=
-golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
+github.com/mgenware/mingru-go-lib v0.0.0-20200913021920-211638fd13ab h1:ikSBKISfdBe01Nwmh9Sr9UNUMkp50n1siAxVhdf6aLU=
+github.com/mgenware/mingru-go-lib v0.0.0-20200913021920-211638fd13ab/go.mod h1:Ghfy7+TcCtMubbB0EoeoqyJ06DDC6zJ5pHLAVYtPSKk=

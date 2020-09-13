@@ -8,7 +8,7 @@ package da
 import (
 	"time"
 
-	"github.com/mgenware/go-packagex/v5/dbx"
+	"github.com/mgenware/mingru-go-lib"
 )
 
 // TableTypeEmploymentHistoryItem ...
@@ -30,7 +30,7 @@ type EmploymentHistoryItemTableSelectAllHistoryResult struct {
 }
 
 // SelectAllHistory ...
-func (da *TableTypeEmploymentHistoryItem) SelectAllHistory(queryable dbx.Queryable, page int, pageSize int) ([]*EmploymentHistoryItemTableSelectAllHistoryResult, bool, error) {
+func (da *TableTypeEmploymentHistoryItem) SelectAllHistory(queryable mingru.Queryable, page int, pageSize int) ([]*EmploymentHistoryItemTableSelectAllHistoryResult, bool, error) {
 	limit := pageSize + 1
 	offset := (page - 1) * pageSize
 	max := pageSize
