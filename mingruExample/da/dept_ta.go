@@ -5,9 +5,7 @@
 
 package da
 
-import (
-	"github.com/mgenware/mingru-go-lib"
-)
+import "github.com/mgenware/mingru-go-lib"
 
 // TableTypeDept ...
 type TableTypeDept struct {
