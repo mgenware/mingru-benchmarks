@@ -3,7 +3,7 @@ import t from '../models/employee';
 
 export class EmployeeTA extends mm.TableActions {
   // Select an employee by ID.
-  selectByID = mm.select().byID();
+  selectByID = mm.select().by(t.id);
   // Select all employees.
   selectAll = mm.selectPage().orderByAsc(t.hireDate);
   // Select all employees with a limit.
@@ -11,13 +11,13 @@ export class EmployeeTA extends mm.TableActions {
   // Select paged employees.
   selectPaged = mm.selectPage().orderByAsc(t.hireDate);
   // Select an employee birth date by ID.
-  selectSig = mm.selectField(t.birthDate).byID();
+  selectSig = mm.selectField(t.birthDate).by(t.id);
 
   // Update an employee name by ID.
-  updateName = mm.updateOne().setInputs(t.firstName, t.lastName).byID();
+  updateName = mm.updateOne().setInputs(t.firstName, t.lastName).by(t.id);
 
   // Delete an employee by ID.
-  deleteByID = mm.deleteOne().byID();
+  deleteByID = mm.deleteOne().by(t.id);
 
   // Delete all employees by some criteria.
   deleteByBirthDate = mm.deleteSome().whereSQL(t.birthDate.isEqualToInput());

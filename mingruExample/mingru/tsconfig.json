@@ -1,6 +1,10 @@
 {
   "extends": "mingru-tsconfig",
   "compilerOptions": {
-    "rootDir": "."
+    "downlevelIteration": true,
+    "lib": ["ESNext"],
+    "declaration": false,
+    "outDir": "./dist",
+    "rootDir": "./src"
   }
 }
