@@ -41,12 +41,12 @@ func (da *TableTypeEmployee) InsertUser(queryable mingru.Queryable, id int, firs
 
 // EmployeeTableSelectAllResult ...
 type EmployeeTableSelectAllResult struct {
-	ID        int
-	FirstName string
-	LastName  string
-	Gender    string
 	BirthDate time.Time
+	FirstName string
+	Gender    string
 	HireDate  time.Time
+	ID        int
+	LastName  string
 }
 
 // SelectAll ...
@@ -89,12 +89,12 @@ func (da *TableTypeEmployee) SelectAll(queryable mingru.Queryable, page int, pag
 
 // EmployeeTableSelectAllWithLimitResult ...
 type EmployeeTableSelectAllWithLimitResult struct {
-	ID        int
-	FirstName string
-	LastName  string
-	Gender    string
 	BirthDate time.Time
+	FirstName string
+	Gender    string
 	HireDate  time.Time
+	ID        int
+	LastName  string
 }
 
 // SelectAllWithLimit ...
@@ -137,12 +137,12 @@ func (da *TableTypeEmployee) SelectAllWithLimit(queryable mingru.Queryable, page
 
 // EmployeeTableSelectByIDResult ...
 type EmployeeTableSelectByIDResult struct {
-	ID        int
-	FirstName string
-	LastName  string
-	Gender    string
 	BirthDate time.Time
+	FirstName string
+	Gender    string
 	HireDate  time.Time
+	ID        int
+	LastName  string
 }
 
 // SelectByID ...
@@ -157,12 +157,12 @@ func (da *TableTypeEmployee) SelectByID(queryable mingru.Queryable, id int) (*Em
 
 // EmployeeTableSelectPagedResult ...
 type EmployeeTableSelectPagedResult struct {
-	ID        int
-	FirstName string
-	LastName  string
-	Gender    string
 	BirthDate time.Time
+	FirstName string
+	Gender    string
 	HireDate  time.Time
+	ID        int
+	LastName  string
 }
 
 // SelectPaged ...

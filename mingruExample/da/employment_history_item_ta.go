@@ -23,11 +23,11 @@ var EmploymentHistoryItem = &TableTypeEmploymentHistoryItem{}
 
 // EmploymentHistoryItemTableSelectAllHistoryResult ...
 type EmploymentHistoryItemTableSelectAllHistoryResult struct {
-	FromDate          time.Time
-	ToDate            time.Time
+	DepartmentName    string
 	EmployeeFirstName string
 	EmployeeLastName  string
-	DepartmentName    string
+	FromDate          time.Time
+	ToDate            time.Time
 }
 
 // SelectAllHistory ...

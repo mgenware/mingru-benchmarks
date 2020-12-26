@@ -3,7 +3,7 @@ import t from '../models/dept';
 
 export class DeptTA extends mm.TableActions {
   // Selects paged departments.
-  selectPage = mm.selectPage().orderByAsc(t.id);
+  selectPage = mm.selectRows().pageMode().orderByAsc(t.id);
 }
 
 export default mm.tableActions(t, DeptTA);

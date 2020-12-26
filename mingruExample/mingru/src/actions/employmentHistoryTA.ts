@@ -5,13 +5,14 @@ import employee from '../models/employee';
 
 export class EmploymentHistoryTA extends mm.TableActions {
   selectAllHistory = mm
-    .selectPage(
+    .selectRows(
       t.fromDate,
       t.toDate,
       t.employee_id.join(employee).firstName,
       t.employee_id.join(employee).lastName,
       t.department_id.join(department).name,
     )
+    .pageMode()
     .orderByAsc(t.employee_id)
     .orderByAsc(t.department_id);
 }
