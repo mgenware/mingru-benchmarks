@@ -50,7 +50,7 @@ type EmployeeTableSelectAllResult struct {
 }
 
 // SelectAll ...
-func (da *TableTypeEmployee) SelectAll(queryable mingru.Queryable, page int, pageSize int) ([]*EmployeeTableSelectAllResult, bool, error) {
+func (da *TableTypeEmployee) SelectAll(queryable mingru.Queryable, page int, pageSize int) ([]EmployeeTableSelectAllResult, bool, error) {
 	if page <= 0 {
 		err := fmt.Errorf("Invalid page %v", page)
 		return nil, false, err
@@ -66,13 +66,13 @@ func (da *TableTypeEmployee) SelectAll(queryable mingru.Queryable, page int, pag
 	if err != nil {
 		return nil, false, err
 	}
-	result := make([]*EmployeeTableSelectAllResult, 0, limit)
+	result := make([]EmployeeTableSelectAllResult, 0, limit)
 	itemCounter := 0
 	defer rows.Close()
 	for rows.Next() {
 		itemCounter++
 		if itemCounter <= max {
-			item := &EmployeeTableSelectAllResult{}
+			var item EmployeeTableSelectAllResult
 			err = rows.Scan(&item.ID, &item.FirstName, &item.LastName, &item.Gender, &item.BirthDate, &item.HireDate)
 			if err != nil {
 				return nil, false, err
@@ -98,7 +98,7 @@ type EmployeeTableSelectAllWithLimitResult struct {
 }
 
 // SelectAllWithLimit ...
-func (da *TableTypeEmployee) SelectAllWithLimit(queryable mingru.Queryable, page int, pageSize int) ([]*EmployeeTableSelectAllWithLimitResult, bool, error) {
+func (da *TableTypeEmployee) SelectAllWithLimit(queryable mingru.Queryable, page int, pageSize int) ([]EmployeeTableSelectAllWithLimitResult, bool, error) {
 	if page <= 0 {
 		err := fmt.Errorf("Invalid page %v", page)
 		return nil, false, err
@@ -114,13 +114,13 @@ func (da *TableTypeEmployee) SelectAllWithLimit(queryable mingru.Queryable, page
 	if err != nil {
 		return nil, false, err
 	}
-	result := make([]*EmployeeTableSelectAllWithLimitResult, 0, limit)
+	result := make([]EmployeeTableSelectAllWithLimitResult, 0, limit)
 	itemCounter := 0
 	defer rows.Close()
 	for rows.Next() {
 		itemCounter++
 		if itemCounter <= max {
-			item := &EmployeeTableSelectAllWithLimitResult{}
+			var item EmployeeTableSelectAllWithLimitResult
 			err = rows.Scan(&item.ID, &item.FirstName, &item.LastName, &item.Gender, &item.BirthDate, &item.HireDate)
 			if err != nil {
 				return nil, false, err
@@ -146,11 +146,11 @@ type EmployeeTableSelectByIDResult struct {
 }
 
 // SelectByID ...
-func (da *TableTypeEmployee) SelectByID(queryable mingru.Queryable, id int) (*EmployeeTableSelectByIDResult, error) {
-	result := &EmployeeTableSelectByIDResult{}
+func (da *TableTypeEmployee) SelectByID(queryable mingru.Queryable, id int) (EmployeeTableSelectByIDResult, error) {
+	var result EmployeeTableSelectByIDResult
 	err := queryable.QueryRow("SELECT `emp_no`, `first_name`, `last_name`, `gender`, `birth_date`, `hire_date` FROM `employees` WHERE `emp_no` = ?", id).Scan(&result.ID, &result.FirstName, &result.LastName, &result.Gender, &result.BirthDate, &result.HireDate)
 	if err != nil {
-		return nil, err
+		return result, err
 	}
 	return result, nil
 }
@@ -166,7 +166,7 @@ type EmployeeTableSelectPagedResult struct {
 }
 
 // SelectPaged ...
-func (da *TableTypeEmployee) SelectPaged(queryable mingru.Queryable, page int, pageSize int) ([]*EmployeeTableSelectPagedResult, bool, error) {
+func (da *TableTypeEmployee) SelectPaged(queryable mingru.Queryable, page int, pageSize int) ([]EmployeeTableSelectPagedResult, bool, error) {
 	if page <= 0 {
 		err := fmt.Errorf("Invalid page %v", page)
 		return nil, false, err
@@ -182,13 +182,13 @@ func (da *TableTypeEmployee) SelectPaged(queryable mingru.Queryable, page int, p
 	if err != nil {
 		return nil, false, err
 	}
-	result := make([]*EmployeeTableSelectPagedResult, 0, limit)
+	result := make([]EmployeeTableSelectPagedResult, 0, limit)
 	itemCounter := 0
 	defer rows.Close()
 	for rows.Next() {
 		itemCounter++
 		if itemCounter <= max {
-			item := &EmployeeTableSelectPagedResult{}
+			var item EmployeeTableSelectPagedResult
 			err = rows.Scan(&item.ID, &item.FirstName, &item.LastName, &item.Gender, &item.BirthDate, &item.HireDate)
 			if err != nil {
 				return nil, false, err

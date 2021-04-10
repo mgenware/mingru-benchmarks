@@ -207,10 +207,10 @@ decamelize@^1.1.0, decamelize@^1.2.0:
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
   integrity sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=
 
-decamelize@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-4.0.0.tgz#aa472d7bf660eb15f3494efd531cab7f2a709837"
-  integrity sha512-9iE1PgSik9HeIIw2JO94IidnE3eBoQrFJ3w7sFuzSX4DpmZ3v5sZpUiV5Swcf6mQEF+Y0ru8Neo+p+nyh2J+hQ==
+decamelize@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-5.0.0.tgz#88358157b010ef133febfd27c18994bd80c6215b"
+  integrity sha512-U75DcT5hrio3KNtvdULAWnLiAPbFUC4191ldxMmj4FA/mRuBnmDwU0boNfPyFRhnan+Jm+haLeSn3P0afcBn4w==
 
 del-cli@^3.0.1:
   version "3.0.1"
@@ -267,10 +267,10 @@ escape-string-regexp@^1.0.5:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
-eslint-config-mgenware@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/eslint-config-mgenware/-/eslint-config-mgenware-0.0.2.tgz#b50f53562f7c205223eb8a7f34e053ff92b89dd9"
-  integrity sha512-DfSWDCZeg19ynUnhQqfO06/IgIcaFbQFNoGmgGq8iAR7XHYw/GdS8sJXOrfK3JxM/bOgWdwslsQWeIyd23GwhA==
+eslint-config-mgenware@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/eslint-config-mgenware/-/eslint-config-mgenware-0.0.5.tgz#8e9d173809262b87460373b03552c9de7a0af7e8"
+  integrity sha512-TkHOPsPBqtuobH/+K0zFNDIq+xz/oxJdm4ArFPVzO8/h8T0yxYNN1WIdbUHDnSg5Xdl0hW6AUG9F4SH8boFLUQ==
 
 fast-glob@^3.0.3, fast-glob@^3.1.1:
   version "3.2.4"
@@ -547,12 +547,12 @@ min-indent@^1.0.0:
   resolved "https://registry.yarnpkg.com/min-indent/-/min-indent-1.0.1.tgz#a63f681673b30571fbe8bc25686ae746eefa9869"
   integrity sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==
 
-mingru-models@^0.52.0:
-  version "0.52.0"
-  resolved "https://registry.yarnpkg.com/mingru-models/-/mingru-models-0.52.0.tgz#f37c1ddb313efe14a82b492b8d6e981f6a712388"
-  integrity sha512-ojjmA98DibjCq6Xzv1blWkQUOfp2qbZZMW4UiSL8DVFcM5Snmv6LbO1aVuW0TM13QVZ+G+1VsVJXMcBwqxCuag==
+mingru-models@^0.54.0:
+  version "0.54.0"
+  resolved "https://registry.yarnpkg.com/mingru-models/-/mingru-models-0.54.0.tgz#3131bcff48772ca76db54b568ccf51f9388b4490"
+  integrity sha512-aFTk53EauGY8FKE0FZlStf30bSHkCMMO6osw8SAPkpY5g44jC95GPcNG/Qx8iQ/x8fP/cn/k4iGPrrzScMAOAg==
   dependencies:
-    decamelize "^4.0.0"
+    decamelize "^5.0.0"
     throw-if-arg-empty "^2.2.1"
     to-type-string "^1.1.0"
 
@@ -561,16 +561,16 @@ mingru-tsconfig@^4.0.0:
   resolved "https://registry.yarnpkg.com/mingru-tsconfig/-/mingru-tsconfig-4.0.0.tgz#2027c972810153d76fc208ec5f3f946babe67dcc"
   integrity sha512-9WKlSBKd+q+T20Wip3Esa71MbC7M5gwuzw++k/dBUkkCfP3sLWT9jHb9jaCYYV74qDgDLkUxmSyGIcbpBXMNRw==
 
-mingru@^0.43.0:
-  version "0.43.0"
-  resolved "https://registry.yarnpkg.com/mingru/-/mingru-0.43.0.tgz#ae36f06004caab5bc8c4acb7c9ef6db147d2755e"
-  integrity sha512-JRa3fL7dBvFk0V2ITq3p5wcqS3MWQfd400vkEB0w/dOnjfUcRa22ohbwJKui0Sat1G1RB3X+Yu+f/AIjttWRmw==
+mingru@^0.44.1:
+  version "0.44.1"
+  resolved "https://registry.yarnpkg.com/mingru/-/mingru-0.44.1.tgz#53bf065500f8a97759ac271256544b19198d9573"
+  integrity sha512-sdhgED1dgqyP7d9qEYg5xgnEB0gq2YPXLPyEiM+ir08aaL9kEIxZIo2drFLLFuO4x1J5uhZrU+nUU6RRgN0QCA==
   dependencies:
     camelcase "^6.2.0"
     chalk "^4.1.0"
-    decamelize "^4.0.0"
+    decamelize "^5.0.0"
     del "^6.0.0"
-    eslint-config-mgenware "^0.0.2"
+    eslint-config-mgenware "^0.0.5"
     m-fs "^4.0.0"
     sql-escape-string "^1.1.0"
     throw-if-arg-empty "^2.2.1"
@@ -848,10 +848,10 @@ type-fest@^0.8.1:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.8.1.tgz#09e249ebde851d3b1e48d27c105444667f17b83d"
   integrity sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==
 
-typescript@^4.1.3:
-  version "4.1.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.1.3.tgz#519d582bd94cba0cf8934c7d8e8467e473f53bb7"
-  integrity sha512-B3ZIOf1IKeH2ixgHhj6la6xdwR9QrLC5d1VKeCSY4tvkqhF2eqd9O7txNlS0PO3GrBAFIdr3L1ndNwteUbZLYg==
+typescript@^4.2.4:
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.4.tgz#8610b59747de028fda898a8aef0e103f156d0961"
+  integrity sha512-V+evlYHZnQkaz8TRBuxTA92yZBPotr5H+WhQ7bD3hZUndx5tGOa1fuCgeSjxAzM1RiN5IzvadIXTVefuuwZCRg==
 
 validate-npm-package-license@^3.0.1:
   version "3.0.4"

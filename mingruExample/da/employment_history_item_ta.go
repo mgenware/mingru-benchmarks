@@ -31,7 +31,7 @@ type EmploymentHistoryItemTableSelectAllHistoryResult struct {
 }
 
 // SelectAllHistory ...
-func (da *TableTypeEmploymentHistoryItem) SelectAllHistory(queryable mingru.Queryable, page int, pageSize int) ([]*EmploymentHistoryItemTableSelectAllHistoryResult, bool, error) {
+func (da *TableTypeEmploymentHistoryItem) SelectAllHistory(queryable mingru.Queryable, page int, pageSize int) ([]EmploymentHistoryItemTableSelectAllHistoryResult, bool, error) {
 	if page <= 0 {
 		err := fmt.Errorf("Invalid page %v", page)
 		return nil, false, err
@@ -47,13 +47,13 @@ func (da *TableTypeEmploymentHistoryItem) SelectAllHistory(queryable mingru.Quer
 	if err != nil {
 		return nil, false, err
 	}
-	result := make([]*EmploymentHistoryItemTableSelectAllHistoryResult, 0, limit)
+	result := make([]EmploymentHistoryItemTableSelectAllHistoryResult, 0, limit)
 	itemCounter := 0
 	defer rows.Close()
 	for rows.Next() {
 		itemCounter++
 		if itemCounter <= max {
-			item := &EmploymentHistoryItemTableSelectAllHistoryResult{}
+			var item EmploymentHistoryItemTableSelectAllHistoryResult
 			err = rows.Scan(&item.FromDate, &item.ToDate, &item.EmployeeFirstName, &item.EmployeeLastName, &item.DepartmentName)
 			if err != nil {
 				return nil, false, err

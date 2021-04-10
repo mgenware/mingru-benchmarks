@@ -27,7 +27,7 @@ type DeptTableSelectPageResult struct {
 }
 
 // SelectPage ...
-func (da *TableTypeDept) SelectPage(queryable mingru.Queryable, page int, pageSize int) ([]*DeptTableSelectPageResult, bool, error) {
+func (da *TableTypeDept) SelectPage(queryable mingru.Queryable, page int, pageSize int) ([]DeptTableSelectPageResult, bool, error) {
 	if page <= 0 {
 		err := fmt.Errorf("Invalid page %v", page)
 		return nil, false, err
@@ -43,13 +43,13 @@ func (da *TableTypeDept) SelectPage(queryable mingru.Queryable, page int, pageSi
 	if err != nil {
 		return nil, false, err
 	}
-	result := make([]*DeptTableSelectPageResult, 0, limit)
+	result := make([]DeptTableSelectPageResult, 0, limit)
 	itemCounter := 0
 	defer rows.Close()
 	for rows.Next() {
 		itemCounter++
 		if itemCounter <= max {
-			item := &DeptTableSelectPageResult{}
+			var item DeptTableSelectPageResult
 			err = rows.Scan(&item.ID, &item.Name)
 			if err != nil {
 				return nil, false, err
