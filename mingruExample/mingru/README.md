@@ -1,5 +1,5 @@
 To rebuild the project:
 
 ```sh
-yarn build
+npm run build
 ```

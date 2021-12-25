@@ -1,5 +1,5 @@
 import * as mm from 'mingru-models';
-import t from '../models/employee';
+import t from '../models/employee.js';
 
 export class EmployeeTA extends mm.TableActions {
   // Select an employee by ID.

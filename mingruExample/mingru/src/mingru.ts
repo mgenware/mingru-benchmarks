@@ -1,6 +1,6 @@
 import * as mr from 'mingru';
-import tables from './models/models';
-import actions from './actions/actions';
+import tables from './models/models.js';
+import actions from './actions/actions.js';
 
 (async () => {
   const dialect = new mr.MySQL();

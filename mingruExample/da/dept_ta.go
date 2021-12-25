@@ -39,7 +39,7 @@ func (da *TableTypeDept) SelectPage(queryable mingru.Queryable, page int, pageSi
 	limit := pageSize + 1
 	offset := (page - 1) * pageSize
 	max := pageSize
-	rows, err := queryable.Query("SELECT `dept_no`, `dept_name` FROM `departments` ORDER BY `id` LIMIT ? OFFSET ?", limit, offset)
+	rows, err := queryable.Query("SELECT `dept_no`, `dept_name` FROM `departments` ORDER BY `dept_no` LIMIT ? OFFSET ?", limit, offset)
 	if err != nil {
 		return nil, false, err
 	}

@@ -43,7 +43,7 @@ func (da *TableTypeEmploymentHistoryItem) SelectAllHistory(queryable mingru.Quer
 	limit := pageSize + 1
 	offset := (page - 1) * pageSize
 	max := pageSize
-	rows, err := queryable.Query("SELECT `dept_emp`.`from_date` AS `from_date`, `dept_emp`.`to_date` AS `to_date`, `join_1`.`first_name` AS `employee_first_name`, `join_1`.`last_name` AS `employee_last_name`, `join_2`.`dept_name` AS `department_name` FROM `dept_emp` AS `dept_emp` INNER JOIN `employees` AS `join_1` ON `join_1`.`emp_no` = `dept_emp`.`emp_no` INNER JOIN `departments` AS `join_2` ON `join_2`.`dept_no` = `dept_emp`.`dept_no` ORDER BY `dept_emp`.`emp_no`, `dept_emp`.`dept_no` LIMIT ? OFFSET ?", limit, offset)
+	rows, err := queryable.Query("SELECT `dept_emp`.`from_date`, `dept_emp`.`to_date`, `join_1`.`first_name`, `join_1`.`last_name`, `join_2`.`dept_name` FROM `dept_emp` AS `dept_emp` INNER JOIN `employees` AS `join_1` ON `join_1`.`emp_no` = `dept_emp`.`emp_no` INNER JOIN `departments` AS `join_2` ON `join_2`.`dept_no` = `dept_emp`.`dept_no` ORDER BY `dept_emp`.`emp_no`, `dept_emp`.`dept_no` LIMIT ? OFFSET ?", limit, offset)
 	if err != nil {
 		return nil, false, err
 	}

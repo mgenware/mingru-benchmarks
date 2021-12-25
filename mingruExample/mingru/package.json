@@ -1,20 +1,19 @@
 {
   "name": "mingru-benchmarks",
   "version": "1.0.0",
-  "main": "mingru.ts",
-  "author": "Mgen",
-  "license": "MIT",
+  "exports": "./mingru.ts",
+  "type": "module",
   "private": true,
   "scripts": {
     "build": "del-cli ./dist && tsc && node ./dist/mingru.js"
   },
   "devDependencies": {
-    "del-cli": "^3.0.1",
-    "typescript": "^4.2.4"
+    "del-cli": "^4.0.1",
+    "mgenware-tsconfig-node-x": "^16.0.0",
+    "typescript": "^4.5.4"
   },
   "dependencies": {
-    "mingru": "^0.44.1",
-    "mingru-models": "^0.54.0",
-    "mingru-tsconfig": "^4.0.0"
+    "mingru": "^0.52.0",
+    "mingru-models": "^0.58.1"
   }
 }

@@ -1,5 +1,5 @@
 import * as mm from 'mingru-models';
-import t from '../models/dept';
+import t from '../models/dept.js';
 
 export class DeptTA extends mm.TableActions {
   // Selects paged departments.

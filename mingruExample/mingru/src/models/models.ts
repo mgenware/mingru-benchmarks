@@ -1,4 +1,4 @@
-import dept from './dept';
-import employee from './employee';
+import dept from './dept.js';
+import employee from './employee.js';
 
 export default [dept, employee];

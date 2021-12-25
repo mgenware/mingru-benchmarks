@@ -1,7 +1,7 @@
 import * as mm from 'mingru-models';
-import t from '../models/employmentHistory';
-import department from '../models/dept';
-import employee from '../models/employee';
+import t from '../models/employmentHistory.js';
+import department from '../models/dept.js';
+import employee from '../models/employee.js';
 
 export class EmploymentHistoryTA extends mm.TableActions {
   selectAllHistory = mm
