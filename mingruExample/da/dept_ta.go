@@ -18,6 +18,11 @@ type TableTypeDept struct {
 // Dept ...
 var Dept = &TableTypeDept{}
 
+// MingruSQLName returns the name of this table.
+func (mrTable *TableTypeDept) MingruSQLName() string {
+	return "departments"
+}
+
 // ------------ Actions ------------
 
 // DeptTableSelectPageResult ...
@@ -27,7 +32,7 @@ type DeptTableSelectPageResult struct {
 }
 
 // SelectPage ...
-func (da *TableTypeDept) SelectPage(queryable mingru.Queryable, page int, pageSize int) ([]DeptTableSelectPageResult, bool, error) {
+func (mrTable *TableTypeDept) SelectPage(mrQueryable mingru.Queryable, page int, pageSize int) ([]DeptTableSelectPageResult, bool, error) {
 	if page <= 0 {
 		err := fmt.Errorf("Invalid page %v", page)
 		return nil, false, err
@@ -39,7 +44,7 @@ func (da *TableTypeDept) SelectPage(queryable mingru.Queryable, page int, pageSi
 	limit := pageSize + 1
 	offset := (page - 1) * pageSize
 	max := pageSize
-	rows, err := queryable.Query("SELECT `dept_no`, `dept_name` FROM `departments` ORDER BY `dept_no` LIMIT ? OFFSET ?", limit, offset)
+	rows, err := mrQueryable.Query("SELECT `dept_no`, `dept_name` FROM `departments` ORDER BY `dept_no` LIMIT ? OFFSET ?", limit, offset)
 	if err != nil {
 		return nil, false, err
 	}

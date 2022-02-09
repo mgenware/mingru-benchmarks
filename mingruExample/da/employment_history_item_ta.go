@@ -19,6 +19,11 @@ type TableTypeEmploymentHistoryItem struct {
 // EmploymentHistoryItem ...
 var EmploymentHistoryItem = &TableTypeEmploymentHistoryItem{}
 
+// MingruSQLName returns the name of this table.
+func (mrTable *TableTypeEmploymentHistoryItem) MingruSQLName() string {
+	return "dept_emp"
+}
+
 // ------------ Actions ------------
 
 // EmploymentHistoryItemTableSelectAllHistoryResult ...
@@ -31,7 +36,7 @@ type EmploymentHistoryItemTableSelectAllHistoryResult struct {
 }
 
 // SelectAllHistory ...
-func (da *TableTypeEmploymentHistoryItem) SelectAllHistory(queryable mingru.Queryable, page int, pageSize int) ([]EmploymentHistoryItemTableSelectAllHistoryResult, bool, error) {
+func (mrTable *TableTypeEmploymentHistoryItem) SelectAllHistory(mrQueryable mingru.Queryable, page int, pageSize int) ([]EmploymentHistoryItemTableSelectAllHistoryResult, bool, error) {
 	if page <= 0 {
 		err := fmt.Errorf("Invalid page %v", page)
 		return nil, false, err
@@ -43,7 +48,7 @@ func (da *TableTypeEmploymentHistoryItem) SelectAllHistory(queryable mingru.Quer
 	limit := pageSize + 1
 	offset := (page - 1) * pageSize
 	max := pageSize
-	rows, err := queryable.Query("SELECT `dept_emp`.`from_date`, `dept_emp`.`to_date`, `join_1`.`first_name`, `join_1`.`last_name`, `join_2`.`dept_name` FROM `dept_emp` AS `dept_emp` INNER JOIN `employees` AS `join_1` ON `join_1`.`emp_no` = `dept_emp`.`emp_no` INNER JOIN `departments` AS `join_2` ON `join_2`.`dept_no` = `dept_emp`.`dept_no` ORDER BY `dept_emp`.`emp_no`, `dept_emp`.`dept_no` LIMIT ? OFFSET ?", limit, offset)
+	rows, err := mrQueryable.Query("SELECT `dept_emp`.`from_date`, `dept_emp`.`to_date`, `join_1`.`first_name`, `join_1`.`last_name`, `join_2`.`dept_name` FROM `dept_emp` AS `dept_emp` INNER JOIN `employees` AS `join_1` ON `join_1`.`emp_no` = `dept_emp`.`emp_no` INNER JOIN `departments` AS `join_2` ON `join_2`.`dept_no` = `dept_emp`.`dept_no` ORDER BY `dept_emp`.`emp_no`, `dept_emp`.`dept_no` LIMIT ? OFFSET ?", limit, offset)
 	if err != nil {
 		return nil, false, err
 	}

@@ -5,7 +5,7 @@ import actions from './actions/actions.js';
 (async () => {
   const dialect = new mr.MySQL();
   const builder = new mr.Builder(dialect, '../da/', {
-    cleanBuild: true, // Cleans build directory on each build.
+    cleanOutDir: true, // Cleans build directory on each build.
   });
 
   await builder.buildAsync(async () => {
