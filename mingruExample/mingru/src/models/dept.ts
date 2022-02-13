@@ -5,4 +5,4 @@ class Dept extends mm.Table {
   name = mm.varChar(40).setDBName('dept_name');
 }
 
-export default mm.table(Dept, 'departments');
+export default mm.table(Dept, { dbName: 'departments' });

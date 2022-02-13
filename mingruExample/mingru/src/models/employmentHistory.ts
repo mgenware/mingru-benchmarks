@@ -7,4 +7,4 @@ class EmploymentHistoryItem extends mm.Table {
   toDate = mm.date();
 }
 
-export default mm.table(EmploymentHistoryItem, 'dept_emp');
+export default mm.table(EmploymentHistoryItem, { dbName: 'dept_emp' });

@@ -1,15 +1,12 @@
 import * as mr from 'mingru';
-import tables from './models/models.js';
-import actions from './actions/actions.js';
+import source from './source.js';
 
 (async () => {
   const dialect = new mr.MySQL();
   const builder = new mr.Builder(dialect, '../da/', {
     cleanOutDir: true, // Cleans build directory on each build.
+    createTableSQL: true,
   });
 
-  await builder.buildAsync(async () => {
-    await builder.buildActionsAsync(actions);
-    await builder.buildCreateTableSQLFilesAsync(tables);
-  });
+  await builder.build(source);
 })();
