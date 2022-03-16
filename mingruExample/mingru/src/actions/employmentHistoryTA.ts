@@ -3,7 +3,7 @@ import t from '../models/employmentHistory.js';
 import department from '../models/dept.js';
 import employee from '../models/employee.js';
 
-export class EmploymentHistoryTA extends mm.TableActions {
+export class EmploymentHistoryTA extends mm.ActionGroup {
   selectAllHistory = mm
     .selectRows(
       t.fromDate,
@@ -17,4 +17,4 @@ export class EmploymentHistoryTA extends mm.TableActions {
     .orderByAsc(t.department_id);
 }
 
-export default mm.tableActions(t, EmploymentHistoryTA);
+export default mm.actionGroup(t, EmploymentHistoryTA);

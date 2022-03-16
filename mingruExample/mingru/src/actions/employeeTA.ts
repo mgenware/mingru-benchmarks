@@ -1,7 +1,7 @@
 import * as mm from 'mingru-models';
 import t from '../models/employee.js';
 
-export class EmployeeTA extends mm.TableActions {
+export class EmployeeTA extends mm.ActionGroup {
   // Select an employee by ID.
   selectByID = mm.selectRow().by(t.id);
   // Select all employees.
@@ -26,4 +26,4 @@ export class EmployeeTA extends mm.TableActions {
   insertUser = mm.insertOne().setInputs();
 }
 
-export default mm.tableActions(t, EmployeeTA);
+export default mm.actionGroup(t, EmployeeTA);

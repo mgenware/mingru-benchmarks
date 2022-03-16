@@ -12,11 +12,9 @@ import (
 	"github.com/mgenware/mingru-go-lib"
 )
 
-// TableTypeEmploymentHistoryItem ...
 type TableTypeEmploymentHistoryItem struct {
 }
 
-// EmploymentHistoryItem ...
 var EmploymentHistoryItem = &TableTypeEmploymentHistoryItem{}
 
 // MingruSQLName returns the name of this table.
@@ -26,7 +24,6 @@ func (mrTable *TableTypeEmploymentHistoryItem) MingruSQLName() string {
 
 // ------------ Actions ------------
 
-// EmploymentHistoryItemTableSelectAllHistoryResult ...
 type EmploymentHistoryItemTableSelectAllHistoryResult struct {
 	DepartmentName    string
 	EmployeeFirstName string
@@ -35,7 +32,6 @@ type EmploymentHistoryItemTableSelectAllHistoryResult struct {
 	ToDate            time.Time
 }
 
-// SelectAllHistory ...
 func (mrTable *TableTypeEmploymentHistoryItem) SelectAllHistory(mrQueryable mingru.Queryable, page int, pageSize int) ([]EmploymentHistoryItemTableSelectAllHistoryResult, bool, error) {
 	if page <= 0 {
 		err := fmt.Errorf("Invalid page %v", page)

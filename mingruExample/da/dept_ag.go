@@ -11,11 +11,9 @@ import (
 	"github.com/mgenware/mingru-go-lib"
 )
 
-// TableTypeDept ...
 type TableTypeDept struct {
 }
 
-// Dept ...
 var Dept = &TableTypeDept{}
 
 // MingruSQLName returns the name of this table.
@@ -25,13 +23,11 @@ func (mrTable *TableTypeDept) MingruSQLName() string {
 
 // ------------ Actions ------------
 
-// DeptTableSelectPageResult ...
 type DeptTableSelectPageResult struct {
 	ID   string
 	Name string
 }
 
-// SelectPage ...
 func (mrTable *TableTypeDept) SelectPage(mrQueryable mingru.Queryable, page int, pageSize int) ([]DeptTableSelectPageResult, bool, error) {
 	if page <= 0 {
 		err := fmt.Errorf("Invalid page %v", page)
