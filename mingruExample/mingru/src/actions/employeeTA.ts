@@ -14,16 +14,16 @@ export class EmployeeTA extends mm.ActionGroup {
   selectSig = mm.selectField(t.birthDate).by(t.id);
 
   // Update an employee name by ID.
-  updateName = mm.updateOne().setInputs(t.firstName, t.lastName).by(t.id);
+  updateName = mm.updateOne().setParams(t.firstName, t.lastName).by(t.id);
 
   // Delete an employee by ID.
   deleteByID = mm.deleteOne().by(t.id);
 
   // Delete all employees by some criteria.
-  deleteByBirthDate = mm.deleteSome().whereSQL(t.birthDate.isEqualToInput());
+  deleteByBirthDate = mm.deleteSome().whereSQL(t.birthDate.isEqualToParam());
 
   // Insert a new employee.
-  insertUser = mm.insertOne().setInputs();
+  insertUser = mm.insertOne().setParams();
 }
 
 export default mm.actionGroup(t, EmployeeTA);

@@ -13,7 +13,7 @@
     "typescript": "^4.6.2"
   },
   "dependencies": {
-    "mingru": "^0.57.0",
-    "mingru-models": "^0.62.4"
+    "mingru": "^0.58.1",
+    "mingru-models": "^0.63.1"
   }
 }
