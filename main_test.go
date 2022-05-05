@@ -24,7 +24,7 @@ func BenchmarkMingruSelectRowsWithRelationship(b *testing.B) {
 	mrConn := mingruExample.GetConn()
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		_, _, err := da.EmploymentHistoryItem.SelectAllHistory(mrConn, 1, SelectLimit)
+		_, _, err := da.EmploymentHistory.SelectAllHistory(mrConn, 1, SelectLimit)
 		if err != nil {
 			panic(err)
 		}

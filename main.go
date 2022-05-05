@@ -24,7 +24,7 @@ func main() {
 	}
 
 	fmt.Println("SelectRowsWithRelationship")
-	history, _, err := da.EmploymentHistoryItem.SelectAllHistory(mrConn, 1, limit)
+	history, _, err := da.EmploymentHistory.SelectAllHistory(mrConn, 1, limit)
 	if err != nil {
 		panic(err)
 	}

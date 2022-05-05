@@ -12,34 +12,29 @@ import (
 	"github.com/mgenware/mingru-go-lib"
 )
 
-type TableTypeEmployee struct {
+type EmployeeAGType struct {
 }
 
-var Employee = &TableTypeEmployee{}
-
-// MingruSQLName returns the name of this table.
-func (mrTable *TableTypeEmployee) MingruSQLName() string {
-	return "employees"
-}
+var Employee = &EmployeeAGType{}
 
 // ------------ Actions ------------
 
-func (mrTable *TableTypeEmployee) DeleteByBirthDate(mrQueryable mingru.Queryable, birthDate time.Time) (int, error) {
+func (mrTable *EmployeeAGType) DeleteByBirthDate(mrQueryable mingru.Queryable, birthDate time.Time) (int, error) {
 	result, err := mrQueryable.Exec("DELETE FROM `employees` WHERE `birth_date` = ?", birthDate)
 	return mingru.GetRowsAffectedIntWithError(result, err)
 }
 
-func (mrTable *TableTypeEmployee) DeleteByID(mrQueryable mingru.Queryable, id int) error {
+func (mrTable *EmployeeAGType) DeleteByID(mrQueryable mingru.Queryable, id int) error {
 	result, err := mrQueryable.Exec("DELETE FROM `employees` WHERE `emp_no` = ?", id)
 	return mingru.CheckOneRowAffectedWithError(result, err)
 }
 
-func (mrTable *TableTypeEmployee) InsertUser(mrQueryable mingru.Queryable, id int, firstName string, lastName string, gender string, birthDate time.Time, hireDate time.Time) error {
+func (mrTable *EmployeeAGType) InsertUser(mrQueryable mingru.Queryable, id int, firstName string, lastName string, gender string, birthDate time.Time, hireDate time.Time) error {
 	_, err := mrQueryable.Exec("INSERT INTO `employees` (`emp_no`, `first_name`, `last_name`, `gender`, `birth_date`, `hire_date`) VALUES (?, ?, ?, ?, ?, ?)", id, firstName, lastName, gender, birthDate, hireDate)
 	return err
 }
 
-type EmployeeTableSelectAllResult struct {
+type EmployeeAGSelectAllResult struct {
 	BirthDate time.Time
 	FirstName string
 	Gender    string
@@ -48,7 +43,7 @@ type EmployeeTableSelectAllResult struct {
 	LastName  string
 }
 
-func (mrTable *TableTypeEmployee) SelectAll(mrQueryable mingru.Queryable, page int, pageSize int) ([]EmployeeTableSelectAllResult, bool, error) {
+func (mrTable *EmployeeAGType) SelectAll(mrQueryable mingru.Queryable, page int, pageSize int) ([]EmployeeAGSelectAllResult, bool, error) {
 	if page <= 0 {
 		err := fmt.Errorf("Invalid page %v", page)
 		return nil, false, err
@@ -64,13 +59,13 @@ func (mrTable *TableTypeEmployee) SelectAll(mrQueryable mingru.Queryable, page i
 	if err != nil {
 		return nil, false, err
 	}
-	result := make([]EmployeeTableSelectAllResult, 0, limit)
+	result := make([]EmployeeAGSelectAllResult, 0, limit)
 	itemCounter := 0
 	defer rows.Close()
 	for rows.Next() {
 		itemCounter++
 		if itemCounter <= max {
-			var item EmployeeTableSelectAllResult
+			var item EmployeeAGSelectAllResult
 			err = rows.Scan(&item.ID, &item.FirstName, &item.LastName, &item.Gender, &item.BirthDate, &item.HireDate)
 			if err != nil {
 				return nil, false, err
@@ -85,7 +80,7 @@ func (mrTable *TableTypeEmployee) SelectAll(mrQueryable mingru.Queryable, page i
 	return result, itemCounter > len(result), nil
 }
 
-type EmployeeTableSelectAllWithLimitResult struct {
+type EmployeeAGSelectAllWithLimitResult struct {
 	BirthDate time.Time
 	FirstName string
 	Gender    string
@@ -94,7 +89,7 @@ type EmployeeTableSelectAllWithLimitResult struct {
 	LastName  string
 }
 
-func (mrTable *TableTypeEmployee) SelectAllWithLimit(mrQueryable mingru.Queryable, page int, pageSize int) ([]EmployeeTableSelectAllWithLimitResult, bool, error) {
+func (mrTable *EmployeeAGType) SelectAllWithLimit(mrQueryable mingru.Queryable, page int, pageSize int) ([]EmployeeAGSelectAllWithLimitResult, bool, error) {
 	if page <= 0 {
 		err := fmt.Errorf("Invalid page %v", page)
 		return nil, false, err
@@ -110,13 +105,13 @@ func (mrTable *TableTypeEmployee) SelectAllWithLimit(mrQueryable mingru.Queryabl
 	if err != nil {
 		return nil, false, err
 	}
-	result := make([]EmployeeTableSelectAllWithLimitResult, 0, limit)
+	result := make([]EmployeeAGSelectAllWithLimitResult, 0, limit)
 	itemCounter := 0
 	defer rows.Close()
 	for rows.Next() {
 		itemCounter++
 		if itemCounter <= max {
-			var item EmployeeTableSelectAllWithLimitResult
+			var item EmployeeAGSelectAllWithLimitResult
 			err = rows.Scan(&item.ID, &item.FirstName, &item.LastName, &item.Gender, &item.BirthDate, &item.HireDate)
 			if err != nil {
 				return nil, false, err
@@ -131,7 +126,7 @@ func (mrTable *TableTypeEmployee) SelectAllWithLimit(mrQueryable mingru.Queryabl
 	return result, itemCounter > len(result), nil
 }
 
-type EmployeeTableSelectByIDResult struct {
+type EmployeeAGSelectByIDResult struct {
 	BirthDate time.Time
 	FirstName string
 	Gender    string
@@ -140,8 +135,8 @@ type EmployeeTableSelectByIDResult struct {
 	LastName  string
 }
 
-func (mrTable *TableTypeEmployee) SelectByID(mrQueryable mingru.Queryable, id int) (EmployeeTableSelectByIDResult, error) {
-	var result EmployeeTableSelectByIDResult
+func (mrTable *EmployeeAGType) SelectByID(mrQueryable mingru.Queryable, id int) (EmployeeAGSelectByIDResult, error) {
+	var result EmployeeAGSelectByIDResult
 	err := mrQueryable.QueryRow("SELECT `emp_no`, `first_name`, `last_name`, `gender`, `birth_date`, `hire_date` FROM `employees` WHERE `emp_no` = ?", id).Scan(&result.ID, &result.FirstName, &result.LastName, &result.Gender, &result.BirthDate, &result.HireDate)
 	if err != nil {
 		return result, err
@@ -149,7 +144,7 @@ func (mrTable *TableTypeEmployee) SelectByID(mrQueryable mingru.Queryable, id in
 	return result, nil
 }
 
-type EmployeeTableSelectPagedResult struct {
+type EmployeeAGSelectPagedResult struct {
 	BirthDate time.Time
 	FirstName string
 	Gender    string
@@ -158,7 +153,7 @@ type EmployeeTableSelectPagedResult struct {
 	LastName  string
 }
 
-func (mrTable *TableTypeEmployee) SelectPaged(mrQueryable mingru.Queryable, page int, pageSize int) ([]EmployeeTableSelectPagedResult, bool, error) {
+func (mrTable *EmployeeAGType) SelectPaged(mrQueryable mingru.Queryable, page int, pageSize int) ([]EmployeeAGSelectPagedResult, bool, error) {
 	if page <= 0 {
 		err := fmt.Errorf("Invalid page %v", page)
 		return nil, false, err
@@ -174,13 +169,13 @@ func (mrTable *TableTypeEmployee) SelectPaged(mrQueryable mingru.Queryable, page
 	if err != nil {
 		return nil, false, err
 	}
-	result := make([]EmployeeTableSelectPagedResult, 0, limit)
+	result := make([]EmployeeAGSelectPagedResult, 0, limit)
 	itemCounter := 0
 	defer rows.Close()
 	for rows.Next() {
 		itemCounter++
 		if itemCounter <= max {
-			var item EmployeeTableSelectPagedResult
+			var item EmployeeAGSelectPagedResult
 			err = rows.Scan(&item.ID, &item.FirstName, &item.LastName, &item.Gender, &item.BirthDate, &item.HireDate)
 			if err != nil {
 				return nil, false, err
@@ -195,7 +190,7 @@ func (mrTable *TableTypeEmployee) SelectPaged(mrQueryable mingru.Queryable, page
 	return result, itemCounter > len(result), nil
 }
 
-func (mrTable *TableTypeEmployee) SelectSig(mrQueryable mingru.Queryable, id int) (time.Time, error) {
+func (mrTable *EmployeeAGType) SelectSig(mrQueryable mingru.Queryable, id int) (time.Time, error) {
 	var result time.Time
 	err := mrQueryable.QueryRow("SELECT `birth_date` FROM `employees` WHERE `emp_no` = ?", id).Scan(&result)
 	if err != nil {
@@ -204,7 +199,7 @@ func (mrTable *TableTypeEmployee) SelectSig(mrQueryable mingru.Queryable, id int
 	return result, nil
 }
 
-func (mrTable *TableTypeEmployee) UpdateName(mrQueryable mingru.Queryable, id int, firstName string, lastName string) error {
+func (mrTable *EmployeeAGType) UpdateName(mrQueryable mingru.Queryable, id int, firstName string, lastName string) error {
 	result, err := mrQueryable.Exec("UPDATE `employees` SET `first_name` = ?, `last_name` = ? WHERE `emp_no` = ?", firstName, lastName, id)
 	return mingru.CheckOneRowAffectedWithError(result, err)
 }

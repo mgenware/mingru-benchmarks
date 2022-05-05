@@ -1,5 +1,5 @@
-import deptTA from './actions/deptTA.js';
-import employeeTA from './actions/employeeTA.js';
-import employmentHistoryTA from './actions/employmentHistoryTA.js';
+import deptAG from './actions/deptAG.js';
+import employeeAG from './actions/employeeAG.js';
+import employmentHistoryAG from './actions/employmentHistoryAG.js';
 
-export default [deptTA, employeeTA, employmentHistoryTA];
+export default [deptAG, employeeAG, employmentHistoryAG];
